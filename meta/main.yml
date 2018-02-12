@@ -1,0 +1,22 @@
+galaxy_info:
+  author: Karol Tomala
+  description: Golem Development for setting up BuildBot Worker on Linux
+  company: Golem Factory GmbH
+  license: BSD
+  min_ansible_version: 2.4
+
+  platforms:
+  - name: Ubuntu
+    versions:
+    - xenial
+
+  galaxy_tags:
+    - golem
+    - golem-dev
+    - golem-dev-linux
+    - golem_dev
+    - golem_dev_linux
+    - buildbot
+    - dev
+    - development
+    - linux
