@@ -94,6 +94,7 @@
     name: "{{ item }}"
   with_items:
     - python3.6
+    - python3.6-venv
     - python3.6-dev
     - openssl
     - pkg-config
