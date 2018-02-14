@@ -43,7 +43,7 @@
     name: ethereum
     update_cache: yes
 
-- name: setup buildbot-worker user
+- name: Setup buildbot-worker user
   user:
     name: "{{ buildbot_user }}"
     group: "{{ buildbot_group }}"
@@ -89,7 +89,7 @@
     update_cache: yes
 
 
-- name: install golemapp dependencies
+- name: Install golemapp dependencies
   apt:
     name: "{{ item }}"
   with_items:
