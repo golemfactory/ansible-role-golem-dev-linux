@@ -72,8 +72,8 @@
     src: "{{ hyperg_package_url }}"
     dest: "{{ hyperg_base_dir }}"
     remote_src: yes
-  args:
-    creates: "{{ hyperg_install_dir }}"
+#  args:
+#    creates: "{{ hyperg_install_dir }}"
 
 
 - name: Link hyperg
