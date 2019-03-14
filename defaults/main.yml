@@ -1,7 +1,7 @@
 ---
 # defaults file for golem-dev-linux
 
-hyperg_version: 0.2.9
+hyperg_version: 0.2.10
 hyperg_package_url: "https://github.com/golemfactory/golem-hyperdrive/releases/download/v{{ hyperg_version }}/hyperg_{{ hyperg_version }}_linux-x64.tar.gz"
 hyperg_base_dir: /opt
 hyperg_install_dir: "{{ hyperg_base_dir }}/hyperg"
