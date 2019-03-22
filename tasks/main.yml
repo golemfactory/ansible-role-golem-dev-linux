@@ -76,9 +76,13 @@
 
 - name: Link hyperg
   file:
-    src: "{{ hyperg_install_dir}}/hyperg"
-    dest: "{{ hyperg_link_target_dir }}/hyperg"
+    src: "{{ hyperg_install_dir}}/{{item}}"
+    dest: "{{ hyperg_link_target_dir }}/{{item}}"
     state: link
+  with_items:
+    - hyperg
+    - hyperg-client
+    - hyperg-worker
 
 
 - name: Add python 3.6 repo
