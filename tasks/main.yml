@@ -4,13 +4,12 @@
 
 - name: Install docker-ce dependencies
   apt:
-    name: "{{ item }}"
+    name:
+      - software-properties-common
+      - apt-transport-https
+      - ca-certificates
+      - curl
     update_cache: yes
-  with_items:
-    - software-properties-common
-    - apt-transport-https
-    - ca-certificates
-    - curl
 
 
 - name: Install docker-ce key
@@ -53,12 +52,11 @@
 
 - name: Install taskcollector dependencies
   apt:
-    name: "{{item}}"
-  with_items:
-    - gcc-5
-    - g++-5
-    - libfreeimage3
-    - libfreeimage-dev
+    name:
+      - gcc-5
+      - g++-5
+      - libfreeimage3
+      - libfreeimage-dev
 
 
 - name: Prepare hyperg directory
