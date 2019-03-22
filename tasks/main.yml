@@ -91,22 +91,53 @@
 
 - name: Install golemapp dependencies
   apt:
-    name: "{{ item }}"
-  with_items:
-    - python3.6
-    - python3.6-venv
-    - python3.6-dev
-    - openssl
-    - pkg-config
-    - libjpeg-dev
-    - libopenexr-dev
-    - libssl-dev
-    - autoconf
-    - libgmp-dev
-    - libtool
-    - libffi-dev
-    - libgtk2.0-0
-    - libxss1
-    - libgconf-2-4
-    - libnss3
-    - libasound2
+    name:
+      - python3.6
+      - python3.6-venv
+      - python3.6-dev
+      - openssl
+      - pkg-config
+      - libjpeg-dev
+      - libopenexr-dev
+      - libssl-dev
+      - autoconf
+      - libgmp-dev
+      - libtool
+      - libffi-dev
+      - libgtk2.0-0
+      - libxss1
+      - libgconf-2-4
+      - libnss3
+      - libasound2
+      - zip
+
+# install rust
+- get_url:
+    url: https://sh.rustup.rs
+    dest: /tmp/rust-install.sh
+    force: yes
+  become_user: "{{buildbot_user}}"
+    # NOT SUPPORTED :( https://github.com/ansible/ansible/issues/2416
+    #creates: /Users/buildbot-worker/.cargo/bin/rustup
+
+- raw: sh /tmp/rust-install.sh -y
+  become_user: "{{buildbot_user}}"
+  args:
+    creates: "{{buildbot_user_homedir}}/.cargo/bin/rustup"
+
+- file: path=/tmp/rust-install.sh state=absent
+  become_user: "{{buildbot_user}}"
+
+- name: install rust nightly
+  become_user: buildbot-worker
+  command: "{{buildbot_user_homedir}}/.cargo/bin/rustup install nightly"
+
+- name: install grcov coverage tool
+  become_user: "{{buildbot_user}}"
+  command: "{{buildbot_user_homedir}}/.cargo/bin/cargo install grcov"
+  args:
+    creates: "{{buildbot_user_homedir}}/.cargo/bin/grcov"
+
+- name: install rust linter rustfmt
+  become_user: "{{buildbot_user}}"
+  command: "{{buildbot_user_homedir}}/.cargo/bin/rustup component add rustfmt"
